@@ -1,0 +1,12 @@
+{
+  "name": "@hasadmin/bookmarklets",
+  "version": "1.0.0",
+  "description": "Productivity bookmarklets for hazard assessment workflows",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "terser": "^5.37.0"
+  },
+  "private": true
+}

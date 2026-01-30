@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HasAdmin Bookmarklets</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .bookmarklet-card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: #fafafa; }
+        .bookmarklet-link { display: inline-block; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; cursor: grab; }
+        .bookmarklet-link:hover { background: #0056b3; }
+        .instructions { background: #eef; padding: 15px; border-radius: 6px; margin-bottom: 30px; }
+        code { background: #eee; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        footer { margin-top: 50px; font-size: 0.9em; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>HasAdmin Bookmarklets</h1>
+    
+    <div class="instructions">
+        <h3>📥 How to Install</h3>
+        <p>Drag the blue buttons below directly to your browser's <strong>Bookmarks Bar</strong>.</p>
+        <p>Don't see the bar? Press <code>Ctrl+Shift+B</code> (Windows/Linux) or <code>Cmd+Shift+B</code> (Mac).</p>
+    </div>
+
+    
+    <div class="bookmarklet-card">
+        <h2>Check Feature in ULAP</h2>
+        <p>Opens the ULAP web app viewer centered on the coordinates of the first hazard assessment row found.</p>
+        <p>
+            <a href="javascript:(()%3D%3E%7Btry%7Bconst%20e%3Ddocument.querySelector(%22%23assessment-grid%20.items%20tbody%20tr%22)%3Bif(!e)throw%20new%20Error(%22No%20hazard%20assessment%20rows%20found.%22)%3Bconst%20r%3De.cells%5B3%5D.innerText.trim()%2C%5Bt%2Co%5D%3Dr.split(%22%2C%22).map(e%3D%3EparseFloat(e))%3Bif(isNaN(o)%7C%7CisNaN(t))throw%20new%20Error(%22Invalid%20coordinates%3A%20%22%2Br)%3Bconst%20s%3D%60https%3A%2F%2Fulap-portal.georisk.gov.ph%2Farcgis%2Fapps%2Fwebappviewer%2Findex.html%3Fid%3D8f46bb981d874849b97e0c23f81f6b86%26center%3D%24%7Bt%7D%2C%24%7Bo%7D%26level%3D17%60%3Bwindow.open(s%2C%22_blank%22)%2CsetTimeout(()%3D%3Ealert(%22%F0%9F%A7%AD%20ULAP%20viewer%20opened.%5CnCheck%20if%20your%20polygon%20appears.%5CnIf%20not%2C%20go%20back%20and%20re-sync.%22)%2C500)%7Dcatch(e)%7Balert(%22%E2%9D%8C%20Failed%3A%20%22%2Be.message)%7D%7D)()%3B" class="bookmarklet-link" onclick="return false;">Check Feature in ULAP</a>
+        </p>
+        <p><small><em>Drag this button to your bookmarks bar</em></small></p>
+    </div>
+    
+
+    <div class="bookmarklet-card">
+        <h2>Parse Request for Coords</h2>
+        <p>Scans the page for DMS coordinates or KMZ/KML links and copies them to the clipboard.</p>
+        <p>
+            <a href="javascript:(()%3D%3E%7Bfunction%20t(t)%7Blet%20e%3Dt.trim().match(%2F(%5Cd%2B)%5B%C2%B0%C2%BA%5D%3F%5Cs*(%5Cd%2B)%3F%5B'%E2%80%99%5D%3F%5Cs*(%5B%5Cd.%5D%2B)%3F%5B%22%E2%80%9D%5D%3F%5Cs*(%5BNSEW%5D)%2Fi)%3Bif(!e)return%20null%3Blet%20r%3DparseFloat(e%5B1%5D%7C%7C0)%2Co%3DparseFloat(e%5B2%5D%7C%7C0)%2Cl%3DparseFloat(e%5B3%5D%7C%7C0)%2Ca%3De%5B4%5D.toUpperCase()%2Ci%3Dr%2Bo%2F60%2Bl%2F3600%3Breturn%2F%5BSW%5D%2F.test(a)%3F-i%3Ai%7Dfunction%20e(t%2Ce)%7Btry%7Bnavigator.clipboard.writeText(t).then(()%3D%3Ealert(%60%F0%9F%93%8C%20%24%7Be%7D%20copied%20to%20clipboard%3A%5Cn%24%7Bt%7D%60)).catch(()%3D%3Eprompt(%60%F0%9F%93%8C%20%24%7Be%7D%20(copy%20manually)%3A%60%2Ct))%7Dcatch(r)%7Bprompt(%60%F0%9F%93%8C%20%24%7Be%7D%20(copy%20manually)%3A%60%2Ct)%7D%7Dlet%20r%3Ddocument.querySelectorAll(%22td%3Anth-child(3)%22)%2Co%3D!1%3Bfor(let%20l%20of%20r)%7Blet%20r%3Dl.innerText.replace(%2F%5Cs%2B%2Fg%2C%22%20%22).trim().match(%2F(%5Cd%7B1%2C3%7D%5B%C2%B0%C2%BA%5D%3F%5Cs*%5Cd%7B1%2C2%7D%5B'%E2%80%99%5D%3F%5Cs*%5B%5Cd.%5D%2B%5B%22%E2%80%9D%5D%3F%5Cs*%5BNS%5D)%5B%2C%3B%5Cs%5D%2B(%5Cd%7B1%2C3%7D%5B%C2%B0%C2%BA%5D%3F%5Cs*%5Cd%7B1%2C2%7D%5B'%E2%80%99%5D%3F%5Cs*%5B%5Cd.%5D%2B%5B%22%E2%80%9D%5D%3F%5Cs*%5BEW%5D)%2Fi)%3Bif(r)%7Blet%20l%3Dt(r%5B1%5D)%2Ca%3Dt(r%5B2%5D)%3Bif(l%26%26a)%7Be(%60%24%7Bl%7D%2C%20%24%7Ba%7D%60%2C%22Coordinates%22)%2Co%3D!0%3Bbreak%7D%7D%7Dif(!o)%7Blet%20t%3Ddocument.querySelectorAll(%22span.text-primary%22)%2Cr%3D!1%3Bfor(let%20o%20of%20t)%7Blet%20t%3Do.innerText.toLowerCase()%3Bif(t.endsWith(%22.kmz%22)%7C%7Ct.endsWith(%22.kml%22))%7Blet%20t%3Do.closest(%22tr%22).querySelector(%22a%5Bhref*%3D'download'%5D%22)%3Bif(t)%7Be(t.href.startsWith(%22http%22)%3Ft.href%3Alocation.origin%2Bt.getAttribute(%22href%22)%2C%22KMZ%2FKML%20download%20link%22)%2Cr%3D!0%3Bbreak%7D%7D%7Dr%7C%7Calert(%22%E2%9A%A0%EF%B8%8F%20No%20coordinates%20or%20KMZ%2FKML%20files%20found.%22)%7D%7D)()%3B" class="bookmarklet-link" onclick="return false;">Parse Request for Coords</a>
+        </p>
+        <p><small><em>Drag this button to your bookmarks bar</em></small></p>
+    </div>
+    
+
+    <footer>
+        <p>Generated on 2026-01-30</p>
+    </footer>
+</body>
+</html>
